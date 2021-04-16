@@ -2,7 +2,7 @@
 # https://github.com/MicrosoftDocs/azure-docs/blob/master/articles/terraform/terraform-create-k8s-cluster-with-tf-and-aks.md
 
 provider "azurerm" {
-    subscription_id = var.subscription_id
+    subscription_id = "656e386d-2405-4e9b-910c-368f3d1c3975"
     #client_id       = var.terraform_serviceprincipal_id
     #client_secret   = var.terraform_serviceprincipal_secret
     tenant_id       = var.tenant_id

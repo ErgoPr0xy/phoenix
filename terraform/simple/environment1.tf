@@ -519,24 +519,24 @@ provider "kubernetes" {
 # https://www.terraform.io/docs/providers/helm/index.html
 provider "helm" {
   kubernetes {
-    load_config_file = false
+#    load_config_file       = false
     host                   = azurerm_kubernetes_cluster.akstf.kube_config.0.host
     client_certificate     = base64decode(azurerm_kubernetes_cluster.akstf.kube_config.0.client_certificate)
     client_key             = base64decode(azurerm_kubernetes_cluster.akstf.kube_config.0.client_key)
     cluster_ca_certificate = base64decode(azurerm_kubernetes_cluster.akstf.kube_config.0.cluster_ca_certificate)
-    config_path = "ensure-that-we-never-read-kube-config-from-home-dir"
+    config_path            = "ensure-that-we-never-read-kube-config-from-home-dir"
   }
 }
 
 # Install Nginx Ingress using Helm Chart
 # https://www.terraform.io/docs/providers/helm/release.html
 resource "helm_release" "nginx_ingress" {
-  name       = "nginx-ingress"
-  repository = "https://kubernetes-charts.storage.googleapis.com" 
-  chart      = "nginx-ingress"
-  namespace  = "nginx"
+  name         = "nginx-ingress"
+  repository   = "https://kubernetes-charts.storage.googleapis.com" 
+  chart        = "nginx-ingress"
+  namespace    = "nginx"
   force_update = "true"
-  timeout = "500"
+  timeout      = "500"
 
   set {
     name  = "controller.service.externalTrafficPolicy"
